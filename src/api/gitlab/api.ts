@@ -1,8 +1,6 @@
 ﻿import { Gitlab } from '@gitbeaker/rest'
 import { useGitlabStore } from '@/stores/gitlab/gitlab'
 
-
-
 export const gitlabApi = () => {
   const store = useGitlabStore()
 

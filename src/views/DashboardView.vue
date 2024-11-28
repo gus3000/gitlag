@@ -10,8 +10,8 @@ gitlabStore.loadUser()
 </script>
 
 <template>
-  <div>token : {{ gitlabStore.gitlabToken }}</div>
-  <div>user mail : {{gitlabStore.user?.email}}</div>
+  <!--  <div>token : {{ gitlabStore.gitlabToken }}</div>-->
+  <div>user mail : {{ gitlabStore.user?.email }}</div>
 </template>
 
 <style scoped></style>

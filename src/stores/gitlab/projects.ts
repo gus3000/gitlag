@@ -10,7 +10,6 @@ export const useProjectStore = defineStore('gitlab.projects', {
 
   actions: {
     async load() {
-
       this.projects = await api.Projects.all({ maxPages: 2 })
     },
   },
