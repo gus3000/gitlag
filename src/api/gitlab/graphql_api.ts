@@ -11,13 +11,49 @@ const graphQLClient = new GraphQLClient(endpoint, {
 })
 
 const query = gql`
-  query {
+  {
     currentUser {
-      authoredMergeRequests(state: opened) {
+      reviewRequestedMergeRequests(state: opened) {
         nodes {
-          webUrl,
-          sourceBranch,
+          webUrl
+          sourceBranch
           targetBranch
+          author {
+            id
+            name
+          }
+          assignees {
+            nodes {
+              id
+              name
+            }
+          }
+          approvedBy {
+            nodes {
+              id
+              name
+            }
+          }
+          diffStatsSummary {
+            additions
+            deletions
+          }
+          discussions {
+            nodes {
+              id
+              createdAt
+              resolved
+              resolvable
+              notes {
+                nodes {
+                  author {
+                    name
+                  }
+                  body
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -25,4 +61,9 @@ const query = gql`
 `
 let response = await graphQLClient.request(query)
 
-console.log(util.inspect(response, {showHidden: false, depth: null, colors: true}))
+console.log(
+  util.inspect(response.currentUser.reviewRequestedMergeRequests.nodes, {
+    showHidden: false,
+    depth: null,
+  }),
+)
